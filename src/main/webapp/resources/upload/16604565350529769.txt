@@ -1,3 +1,0 @@
-application에서 빈 어노테이션을 썼을 때 오류 안 나게 하는 법 : 디펜던시 추가
-마이바티스 디펜던시 하나 더 추가해야함. 스프링부트 용으로. 안하니까 못찾고 오류남
-인풋태그 설명추가http://tcpschool.com/html/html_input_inputAttr
