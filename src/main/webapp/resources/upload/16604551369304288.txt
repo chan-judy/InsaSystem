@@ -1,9 +1,0 @@
-$ echo "#Cosmetic-RandomBox" >> README.md    //리드미 생성
-$ git init
-$ git add README.md   //리드미 추가
-$ git add mini   //업로드할 폴더명 추가
-$ git status   //깃에 추가된 파일 확인
-$ git commit -m "first commit"   //커밋 및 주석
-$ git branch -M main    //master ->main 브랜치 변경
-$ git remote add origin https://github.com/chan-judy/Cosmetic-RandomBox.git   //업로드할 주소
-$ git push -u origin main  //업로드!
