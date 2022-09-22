@@ -1,0 +1,83 @@
+.searchtable tr,
+td,
+th {
+    /*    border: 1px solid black;*/
+    padding: 5px;
+    height: 50px;
+}
+
+.searchtable {
+    margin: 100px auto 20px;
+    font-size: 20px;
+}
+
+.searchtable input,
+select {
+    height: 35px;
+    width: 300px;
+    margin: 0 60px 0 0;
+}
+
+.searchtable tr:nth-of-type(1) th:nth-of-type(1n) {
+    width: 150px;
+}
+
+.btn1 {
+    float: right;
+    margin: -10px 150px 60px 0;
+}
+
+.btn1 button {
+    font-size: 20px;
+    width: 80px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #0B0B3B;
+    border: 1px solid #0B0B3B;
+    color: #fff;
+}
+
+.search_list {
+    margin: 0px auto;
+    clear: both;
+}
+
+.search_list th:first-child{
+   width:10px;
+     border-bottom: 3px solid #0B0B3B;
+}
+
+.search_list th:not(:first-child){
+    margin: 20px 0 0;
+    padding: 0 90px 10px;
+    font-size: 20px;
+    border-bottom: 3px solid #0B0B3B;
+    width:90px;
+   /* border: 1px solid #000;*/
+}
+
+
+
+
+.search_list{
+	text-align: center;
+	}
+
+
+.searchList3{
+	position: relative;
+	top: 14rem;
+	font-size: 30px;
+	text-align: center;
+	left: 200px;
+	
+	
+}
+
+#prenext{
+	text-align: center;
+	margin-top : 20px;
+	font-size: 30px;
+}
+
+

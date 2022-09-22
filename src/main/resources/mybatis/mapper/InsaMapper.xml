@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.boot.mapper.InsaMapper">
+
+	<!-- created(=삽입) -->
+	<insert id="insertData"
+		parameterType="com.spring.boot.VO.InsaVO">
+		insert into insa(
+		sabun, years, zip, salary, name,
+		eng_name, id, pwd, phone, hp, reg_no, sex,
+		email, addr1, addr2,
+		job_type, pos_gbn_code, dept_code, join_gbn_code,
+		gart_level,
+		put_yn,
+		mil_yn, mil_type, mil_level, mil_startdate, mil_enddate, kosa_reg_yn,
+		kosa_class_code, join_day, retire_day, crm_name, cmp_reg_no,
+		cmp_reg_image,
+		carrier, profile, self_intro, profile_image,
+		carrier_image
+		)
+		values (
+		sabun_SEQ.NEXTVAL,#{years, jdbcType=VARCHAR},
+		#{zip, jdbcType=VARCHAR}, #{salary,jdbcType=VARCHAR}, #{name,
+		jdbcType=VARCHAR},
+		#{eng_name, jdbcType=VARCHAR}, #{id,
+		jdbcType=VARCHAR}, #{pwd, jdbcType=VARCHAR},
+		#{phone,
+		jdbcType=VARCHAR}, #{hp, jdbcType=VARCHAR},
+		#{reg_no,jdbcType=VARCHAR},
+		#{sex, jdbcType=VARCHAR}, #{email,
+		jdbcType=VARCHAR}, #{addr1,
+		jdbcType=VARCHAR},
+		#{addr2,
+		jdbcType=VARCHAR}, #{job_type, jdbcType=VARCHAR},
+		#{pos_gbn_code,jdbcType=VARCHAR},
+		#{dept_code, jdbcType=VARCHAR},
+		#{join_gbn_code,jdbcType=VARCHAR},
+		#{gart_level,
+		jdbcType=VARCHAR},#{put_yn,jdbcType=VARCHAR}, #{mil_yn,
+		jdbcType=VARCHAR},
+		#{mil_type, jdbcType=VARCHAR}, #{mil_level,
+		jdbcType=VARCHAR},
+		#{mil_startdate,jdbcType=VARCHAR},
+		#{mil_enddate,
+		jdbcType=VARCHAR}, #{kosa_reg_yn, jdbcType=VARCHAR},
+		#{kosa_class_code, jdbcType=VARCHAR},
+		#{join_day, jdbcType=VARCHAR},
+		#{retire_day, jdbcType=VARCHAR}, #{crm_name,
+		jdbcType=VARCHAR},
+		#{cmp_reg_no, jdbcType=VARCHAR}, #{cmp_reg_image, jdbcType=VARCHAR},
+		#{carrier,
+		jdbcType=VARCHAR},
+		#{profile, jdbcType=VARCHAR},
+		#{self_intro, jdbcType=VARCHAR}, #{profile_image,
+		jdbcType=VARCHAR},
+		#{carrier_image, jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<!-- id check -->
+	<select id="idCheck" parameterType="com.spring.boot.VO.InsaVO"
+		resultType="Integer">
+		select count(*) from insa where id = #{id,	jdbcType=VARCHAR}
+	</select>
+
+
+	<!-- totalPosts -->
+	<select id="insaCnt" parameterType="com.spring.boot.VO.SearchVO"	resultType="Int">
+		SELECT count(*) FROM insa
+		<where>
+			<if test="s_sabun != 0">AND sabun LIKE '%' || #{s_sabun} || '%' </if>
+			<if test="s_name != '' ">AND name LIKE '%' || #{s_name, jdbcType=VARCHAR} || '%'</if>
+			<if test="s_join_gbn != ''">AND join_gbn_code LIKE '%' || #{s_join_gbn,	jdbcType=VARCHAR} || '%'</if>
+			<if test="s_put_yn != ''">AND put_yn LIKE '%' || #{s_put_yn, jdbcType=VARCHAR} || '%'</if>
+			<if test="s_pos_gbn != ''">AND pos_gbn_code LIKE '%' || #{s_pos_gbn,jdbcType=VARCHAR} || '%'</if>
+			<if test="s_join_day != '' and s_retire_day == ''">
+				<![CDATA[	AND join_day >= #{s_join_day, jdbcType=VARCHAR} ]]></if>
+			<if test="s_join_day == '' and s_retire_day != ''">
+				<![CDATA[	AND retire_day <= #{s_retire_day, jdbcType=VARCHAR} ]]></if>
+			<if test="s_join_day != '' and s_retire_day != ''">
+					<![CDATA[	AND join_day >= #{s_join_day, jdbcType=VARCHAR} AND retire_day <= #{s_retire_day, jdbcType=VARCHAR} ]]>
+			</if>
+			<if test="s_job_type != ''">AND job_type LIKE '%' || #{s_job_type, jdbcType=VARCHAR}
+				|| '%'</if>
+		</where>
+	</select>
+	
+	<select id="insaList" parameterType="map" resultType="com.spring.boot.VO.InsaVO">
+		select rn, sabun, name, reg_no, hp, pos_gbn_code, join_day, retire_day, put_yn, salary
+		from(
+			SELECT rownum as rn, sabun, name, reg_no, hp, pos_gbn_code, join_day , retire_day , put_yn , salary
+			FROM (
+				SELECT * FROM insa 
+			<where>
+				<if test="s_sabun != 0">AND sabun LIKE #{s_sabun} </if>
+				<if test="s_name != ''">AND name LIKE '%' || #{s_name, jdbcType=VARCHAR} || '%'</if>
+				<if test="s_join_gbn != ''">AND join_gbn_code LIKE '%' || #{s_join_gbn, jdbcType=VARCHAR} || '%'</if>
+				<if test="s_put_yn != ''">AND put_yn LIKE '%' || #{s_put_yn, jdbcType=VARCHAR} || '%'</if>
+				<if test="s_pos_gbn != ''">AND pos_gbn_code LIKE '%' || #{s_pos_gbn, jdbcType=VARCHAR} || '%'</if>
+				<if test="s_join_day != '' and s_retire_day == ''"><![CDATA[	AND join_day >= #{s_join_day, jdbcType=VARCHAR} ]]></if>
+				<if test="s_join_day == '' and s_retire_day != ''"><![CDATA[	AND retire_day <= #{s_retire_day, jdbcType=VARCHAR} ]]></if>
+				<if test="s_join_day != '' and s_retire_day != ''">
+					<![CDATA[	AND join_day >= #{s_join_day, jdbcType=VARCHAR} AND retire_day <= #{s_retire_day, jdbcType=VARCHAR} ]]>
+				</if>
+				<if test="s_job_type != ''">AND job_type LIKE '%' || #{s_job_type, jdbcType=VARCHAR} || '%'</if>
+			</where>
+			ORDER BY sabun DESC)
+		)
+		WHERE rn BETWEEN #{startRow} AND #{endRow}
+	</select>
+
+	<!-- 삭제 --> 
+		<delete id="deleteInsa" >
+				DELETE FROM insa WHERE sabun In
+				<foreach collection="array" item="sabun" index="i" open="("
+					separator="," close=")">
+					#{sabun}
+				</foreach>
+			</delete>
+		
+	<!-- 업데이트 -->
+	<update id="updatedInsa" parameterType="com.spring.boot.VO.InsaVO">
+			UPDATE insa
+			SET
+			name=#{name, jdbcType=VARCHAR},
+			eng_name=#{eng_name, jdbcType=VARCHAR},
+			pwd=#{pwd, jdbcType=VARCHAR},
+			phone=#{phone, jdbcType=VARCHAR},
+			hp=#{hp, jdbcType=VARCHAR},
+			reg_no=#{reg_no, jdbcType=VARCHAR},
+			email=#{email, jdbcType=VARCHAR},
+			zip=#{zip, jdbcType=VARCHAR},
+			addr1=#{addr1, jdbcType=VARCHAR},
+			addr2=#{addr2, jdbcType=VARCHAR},
+			job_type=#{job_type, jdbcType=VARCHAR},
+			pos_gbn_code=#{pos_gbn_code, jdbcType=VARCHAR},
+			dept_code=#{dept_code, jdbcType=VARCHAR},
+			salary=#{salary, jdbcType=VARCHAR},
+			join_gbn_code=#{join_gbn_code, jdbcType=VARCHAR},
+			gart_level=#{gart_level, jdbcType=VARCHAR},
+			put_yn=#{put_yn, jdbcType=VARCHAR},
+			mil_yn=#{mil_yn, jdbcType=VARCHAR},
+			mil_type=#{mil_type, jdbcType=VARCHAR},
+			mil_level=#{mil_level, jdbcType=VARCHAR},
+			mil_startdate=#{mil_startdate, jdbcType=VARCHAR},
+			mil_enddate=#{mil_enddate, jdbcType=VARCHAR},
+			kosa_reg_yn=#{kosa_reg_yn, jdbcType=VARCHAR},
+			kosa_class_code=#{kosa_class_code, jdbcType=VARCHAR},
+			join_day=#{join_day, jdbcType=VARCHAR},
+			retire_day=#{retire_day, jdbcType=VARCHAR},
+			crm_name=#{crm_name, jdbcType=VARCHAR},
+			cmp_reg_no=#{cmp_reg_no, jdbcType=VARCHAR},
+			cmp_reg_image=#{cmp_reg_image, jdbcType=VARCHAR},
+			carrier=#{carrier, jdbcType=VARCHAR},
+			profile=#{profile, jdbcType=VARCHAR},
+			self_intro=#{self_intro, jdbcType=VARCHAR},
+			profile_image=#{profile_image,jdbcType=VARCHAR},
+			carrier_image=#{carrier_image, jdbcType=VARCHAR}
+			WHERE sabun = #{sabun}
+	</update>
+		
+	<select id="getInsa" parameterType="int" resultType="com.spring.boot.VO.InsaVO">
+		SELECT *
+		FROM insa WHERE sabun=#{sabun}
+	</select>
+		
+	<select id="getProfile" resultType="String" parameterType="int">
+		SELECT profile FROM insa WHERE sabun=#{sabun}
+	</select>
+	
+	<select id="getCmp_reg_image" resultType="String" parameterType="int">
+		SELECT cmp_reg_image FROM insa WHERE sabun = #{sabun}
+	</select>
+	
+	<select id="getCarrier" resultType="String" parameterType="int">
+		SELECT carrier FROM insa WHERE sabun = #{sabun}
+	</select>
+
+	<!-- 공통코드 -->
+	<!-- join 입사여부 -->
+	<select id="join" resultType="com.spring.boot.VO.InsaComVO">
+		select * from insa_com where
+		gubun='01'
+	</select>
+
+	<!-- sex 성별 -->
+	<select id="sex" resultType="com.spring.boot.VO.InsaComVO">
+		select * from insa_com where
+		gubun='02'
+	</select>
+
+	<!-- pos 직위 -->
+	<select id="pos" resultType="com.spring.boot.VO.InsaComVO">
+		select * from insa_com where
+		gubun='03'
+	</select>
+
+	<!-- dept 부서 -->
+	<select id="dept" resultType="com.spring.boot.VO.InsaComVO">
+		select * from insa_com where
+		gubun='04'
+	</select>
+
+	<!-- jobType 직종 -->
+	<select id="jobType" resultType="com.spring.boot.VO.InsaComVO">
+		select * from insa_com where
+		gubun='05'
+	</select>
+
+	<!-- putYn 투입여부 -->
+	<select id="putYn" resultType="com.spring.boot.VO.InsaComVO">
+		select * from insa_com where
+		gubun='06'
+	</select>
+
+	<!-- gartLevel 최종학력 -->
+	<select id="gartLevel" resultType="com.spring.boot.VO.InsaComVO">
+		select * from insa_com where
+		gubun='07'
+	</select>
+
+	<!-- milYn 군별여부 -->
+	<select id="milYn" resultType="com.spring.boot.VO.InsaComVO">
+		select * from insa_com where
+		gubun='08'
+	</select>
+
+	<!-- milType 군별 -->
+	<select id="milType" resultType="com.spring.boot.VO.InsaComVO">
+		select * from insa_com where
+		gubun='09'
+	</select>
+
+	<!-- milLevel 계급 -->
+	<select id="milLevel" resultType="com.spring.boot.VO.InsaComVO">
+		select * from insa_com where
+		gubun='10'
+	</select>
+
+	<!-- kosaRegYn KOSA등록 -->
+	<select id="kosaRegYn" resultType="com.spring.boot.VO.InsaComVO">
+		select * from insa_com where
+		gubun='11'
+	</select>
+
+	<!-- kosaClassCode KOSA등급 -->
+	<select id="kosaClassCode"
+		resultType="com.spring.boot.VO.InsaComVO">
+		select * from insa_com where gubun='12'
+	</select>
+
+
+
+
+</mapper>

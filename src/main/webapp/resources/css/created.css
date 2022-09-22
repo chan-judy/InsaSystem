@@ -1,0 +1,310 @@
+.topbutton {
+    margin: 5rem  4rem 0 0;
+    text-align: right
+}
+
+.topbutton button {
+    text-align: center;
+    width: 5rem;
+    height: 40px;
+    border-radius: 10px;
+    border: 2px solid #0B0B3B;
+    background-color: #0B0B3B;
+    color: #fff;
+    font-size: 20px;
+  
+}
+
+.idchk_button{
+	text-align: center;
+    width: 5rem;
+    height: 35px;
+    border-radius: 5px;
+    border: 2px solid #0B0B3B;
+    background-color: #0B0B3B;
+    color: #fff;
+    font-size: 15px;
+    position: relative;
+    top: 3px;
+}
+
+
+.pwdchk_button{
+	text-align: center;
+    width: 5rem;
+    height: 35px;
+    border-radius: 5px;
+    border: 2px solid #0B0B3B;
+    background-color: #0B0B3B;
+    color: #fff;
+    font-size: 15px;
+    position: relative;
+    top: 3px;
+}
+
+
+table tr,
+td,
+th {
+/*    border: 1px solid black;*/
+    padding: 5px;
+    height: 50px;
+}
+
+table {
+    margin: 90px auto  0;
+    font-size: 20px;
+}
+table input, select {
+    height: 35px;
+}
+
+.img{
+    width: 300px;
+    height: 300px;
+    border-radius: 100%;
+    border: 1px solid #293892;
+    overflow: hidden;
+}
+
+.profile {
+    width: 300px;
+    height: 300px;
+}
+
+table tr:nth-of-type(1) th:not(:first-child) {
+    width: 200px;
+}
+
+table tr:nth-of-type(-n+3) td input {
+    width: 300px;
+}
+
+/*사번*/
+table tr:nth-of-type(1) td:nth-of-type(1) input{
+    text-align: center;
+    background-color: #eee;
+}
+
+
+
+/*직종*/
+table tr:nth-of-type(4) th:nth-of-type(2) {
+    width: 90px;
+}
+table tr:nth-of-type(4) td:nth-of-type(2) select {
+ width: 300px;
+}
+
+
+/*연령*/
+table tr:nth-of-type(4) th:nth-of-type(3)  {
+ width: 120px;
+}
+
+
+table tr:nth-of-type(4) td:nth-of-type(3) input {
+    background-color: #eee;
+     width: 180px;
+}
+
+/*성별*/
+table tr:nth-of-type(4) th:nth-of-type(4) {
+    width: 90px;
+}
+table tr:nth-of-type(4) td:nth-of-type(4) input{
+	 background-color: #eee;
+     width: 180px;
+}
+
+
+
+/*주소*/
+.zip {
+    width: 200px;
+    background-color: #eee;
+    text-align: center;
+}
+
+.addr1{
+    width: 650px;
+    background-color: #eee;
+    text-align: center;
+}
+
+.addr2 {
+    width: 650px;
+    text-align: center;
+}
+
+/*사진올리기*/
+input[type=file]{
+	display:none;
+}
+
+.profile_button{
+    border-radius: 10px;
+    background-color: #0B0B3B;
+    color: #fff;
+    font-size: 15px;
+    padding: 10px 20px;
+}
+
+
+/*직위*/
+table tr:nth-of-type(6) td:nth-of-type(1) select {
+    width: 400px;
+}
+
+table tr:nth-of-type(6) td:nth-of-type(2) select {
+    width: 300px;
+}
+
+table tr:nth-of-type(6) td:nth-of-type(3) input {
+    width: 300px;
+    text-align: right;
+
+}
+
+/*입사구분*/
+table tr:nth-of-type(7) td:nth-of-type(1) {
+    width: 200px;
+}
+
+table tr:nth-of-type(7) td:nth-of-type(1) select {
+    width: 200px;
+}
+
+table tr:nth-of-type(7) td:nth-of-type(2) select {
+    width: 400px;
+}
+
+table tr:nth-of-type(7) td:nth-of-type(3) select {
+    width: 300px;
+}
+
+table tr:nth-of-type(7) td:nth-of-type(4) select {
+    width: 300px;
+}
+
+/*군별*/
+table tr:nth-of-type(8) td:nth-of-type(1) {
+    width: 200px;
+}
+
+table tr:nth-of-type(8) td:nth-of-type(1) select {
+    width: 200px;
+}
+
+table tr:nth-of-type(8) td:nth-of-type(2) select {
+    width: 400px;
+}
+
+table tr:nth-of-type(8) td:nth-of-type(3) input {
+    width: 300px;
+}
+
+table tr:nth-of-type(8) td:nth-of-type(4) input {
+    width: 300px;
+}
+
+/*KOSA등록*/
+table tr:nth-of-type(9) td:nth-of-type(1) {
+    width: 200px;
+}
+
+table tr:nth-of-type(9) td:nth-of-type(1) select {
+    width: 200px;
+}
+
+table tr:nth-of-type(9) td:nth-of-type(2) select {
+    width: 400px;
+}
+
+table tr:nth-of-type(9) td:nth-of-type(3) input {
+    width: 300px;
+}
+
+table tr:nth-of-type(9) td:nth-of-type(4) input {
+    width: 300px;
+}
+
+/*사업체 번호*/
+table tr:nth-of-type(10) td:nth-of-type(1) {
+    width: 200px;
+}
+
+table tr:nth-of-type(10) td:nth-of-type(1) input {
+    width: 200px;
+}
+
+table tr:nth-of-type(10) td:nth-of-type(2) input {
+    width: 400px;
+}
+
+table tr:nth-of-type(10) td:nth-of-type(3) input {
+    width: 300px;
+}
+
+/*자기소개 / 이력서*/
+table tr:nth-of-type(11) td:nth-of-type(1) {
+    width: 200px;
+}
+
+table tr:nth-of-type(11) td:nth-of-type(1) input {
+    width: 825px;
+    padding: 10px;
+}
+
+table tr:nth-of-type(11) td:nth-of-type(2) input {
+    width: 300px;
+}
+
+
+
+.addrbutton {
+    width: 130px;
+    height: 40px;
+    background-color: #fff;
+    color: #000;
+    border-radius: 5px;
+    border: 3px solid #0B0B3B;
+}
+
+.photo_btn {
+    width: 100px;
+    height: 40px;
+    background-color: #fff;
+    color: #000;
+    border-radius: 10px;
+    border: 3px solid #0B0B3B;
+}
+
+.pre_image {
+	 border-radius: 10px;
+    background-color: #fff;
+    font-size: 15px;
+    padding: 7px 20px;
+    border: 3px solid #0B0B3B;
+}
+
+.upload{
+    border-radius: 10px;
+    background-color: #0B0B3B;
+    font-size: 15px;
+    padding: 7px 15px;
+    border: 3px solid #0B0B3B;
+    color:#fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
